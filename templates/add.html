@@ -1,8 +1,13 @@
 {% if not session.get('admin') %}
   <p>Admin access only. <a href="/login">Login as admin</a></p>
 {% endif %}
-
-<!-- regular add voter form here -->
+<h2>Add New Voter</h2>
 <form method="POST">
-  <!-- form fields -->
+  Serial No: <input name="serial"><br>
+  Name: <input name="name"><br>
+  Guardian's Name: <input name="guardian"><br>
+  OldWard/House No.: <input name="oldward"><br>
+  House Name: <input name="house"><br>
+  Political Party: <input name="party"><br>
+  <input type="submit" value="Add">
 </form>
