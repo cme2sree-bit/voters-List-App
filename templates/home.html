@@ -5,3 +5,10 @@
 {% else %}
   <a href="/login">Admin Login</a>
 {% endif %}
+<!-- header, menu, or main page section -->
+{% if session.get('admin') %}
+  <a href="/logout">Logout (Admin)</a>
+  <a href="/add">Add new voter</a>
+{% else %}
+  <a href="/login">Admin Login</a>
+{% endif %}
