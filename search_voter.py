@@ -38,3 +38,11 @@ for party in votes_by_party.index:
     party_voters = df[df[party_col] == party]
     print(f"\nVoters for {party}:")
     print(party_voters[[serial_col, name_col, guardian_col, ward_house_col, house_name_col, party_col]])
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Voter list app is running!"
+
