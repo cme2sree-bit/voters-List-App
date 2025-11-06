@@ -55,4 +55,19 @@ def login():
 def logout():
     session.pop('admin', None)
     return redirect(url_for('home'))
+@app.route("/add", methods=['GET', 'POST'])
+@admin_required
+def add():
+    ...
+    
+@app.route("/edit/<serial_no>", methods=['GET', 'POST'])
+@admin_required
+def edit(serial_no):
+    ...
+
+@app.route("/delete/<serial_no>")
+@admin_required
+def delete(serial_no):
+    ...
+
 
