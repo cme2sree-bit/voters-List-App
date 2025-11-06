@@ -1,0 +1,17 @@
+<h2>Search Voter</h2>
+<form method="POST">
+  <input type="text" name="query" placeholder="Name">
+  <input type="submit" value="Search">
+</form>
+{% if results %}
+  <table border=1>
+    <tr>
+      {% for col in results[0].keys() %}<th>{{ col }}</th>{% endfor %}
+    </tr>
+    {% for v in results %}
+      <tr>
+        {% for c in v.values() %}<td>{{ c }}</td>{% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+{% endif %}
