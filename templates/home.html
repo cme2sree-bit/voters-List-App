@@ -1,14 +1,15 @@
 <h1>Voter List App</h1>
-<a href="/voters">View Voters List</a> | <a href="/search">Search Voter</a>
+<hr>
+<h3>Party-wise Summary</h3>
+<ul>
+  <li>LDF: {{ party_count['LDF'] }}</li>
+  <li>UDF: {{ party_count['UDF'] }}</li>
+  <li>NDA: {{ party_count['NDA'] }}</li>
+  <li>Others: {{ party_count['Others'] }}</li>
+</ul>
+<a href="/voters">View Voters List</a> | <a href="/search">Search Voter</a> 
 {% if session.get('admin') %}
-  <a href="/logout">Logout (Admin)</a>
+ | <a href="/logout">Logout</a> | <a href="/add">Add voter</a>
 {% else %}
-  <a href="/login">Admin Login</a>
-{% endif %}
-<!-- header, menu, or main page section -->
-{% if session.get('admin') %}
-  <a href="/logout">Logout (Admin)</a>
-  <a href="/add">Add new voter</a>
-{% else %}
-  <a href="/login">Admin Login</a>
+ | <a href="/login">Admin Login</a>
 {% endif %}
