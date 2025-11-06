@@ -18,3 +18,41 @@
     {% endfor %}
   </table>
 {% endif %}
+from flask import Flask, render_template, request, redirect, url_for, session
+from functools import wraps
+
+app = Flask(__name__)
+app.secret_key = 'change_this_secret'  # Change for production
+
+ADMIN_PASSWORD = 'admin123'  # Change this to a strong password!
+
+# Admin login-required decorator
+def admin_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get('admin'):
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated
+
+# Admin login page
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        if request.form.get('password') == ADMIN_PASSWORD:
+            session['admin'] = True
+            return redirect(url_for('home'))
+        else:
+            return "Wrong password! <a href='/login'>Try again</a>"
+    return '''
+        <form method="POST">
+            Admin Password: <input type="password" name="password"/>
+            <input type="submit" value="Login"/>
+        </form>
+    '''
+
+@app.route('/logout')
+def logout():
+    session.pop('admin', None)
+    return redirect(url_for('home'))
+
