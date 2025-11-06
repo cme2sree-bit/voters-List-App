@@ -1,0 +1,11 @@
+<h2>All Voters</h2>
+<table border=1>
+  <tr>
+    {% for col in voters[0].keys() %}<th>{{ col }}</th>{% endfor %}
+  </tr>
+  {% for v in voters %}
+    <tr>
+      {% for c in v.values() %}<td>{{ c }}</td>{% endfor %}
+    </tr>
+  {% endfor %}
+</table>
