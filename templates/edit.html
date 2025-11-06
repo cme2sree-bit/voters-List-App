@@ -1,8 +1,12 @@
 {% if not session.get('admin') %}
   <p>Admin access only. <a href="/login">Login as admin</a></p>
 {% endif %}
-
-<!-- regular edit voter form here -->
+<h2>Edit Voter</h2>
 <form method="POST">
-  <!-- form fields -->
+  Name: <input name="name" value="{{ v['Name'] }}"><br>
+  Guardian's Name: <input name="guardian" value="{{ v["Guardian's Name"] }}"><br>
+  OldWard/House No.: <input name="oldward" value="{{ v["OldWard No/ House No."] }}"><br>
+  House Name: <input name="house" value="{{ v["House Name"] }}"><br>
+  Political Party: <input name="party" value="{{ v["Political Party"] }}"><br>
+  <input type="submit" value="Update">
 </form>
