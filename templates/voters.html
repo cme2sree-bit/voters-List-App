@@ -9,3 +9,12 @@
     </tr>
   {% endfor %}
 </table>
+<tr>
+  <!-- Existing voter columns -->
+  <td>
+    {% if session.get('admin') %}
+      <a href="/edit/{{ v['Serial No'] }}">Edit</a>
+      <a href="/delete/{{ v['Serial No'] }}">Delete</a>
+    {% endif %}
+  </td>
+</tr>
