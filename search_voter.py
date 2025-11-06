@@ -1,27 +1,20 @@
-from flask import Flask, render_template, request
-import pandas as pd
-
-app = Flask(__name__)
-DATA_FILE = 'Book1.xlsx'
-
-def get_data():
-    return pd.read_excel(DATA_FILE)
-
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-@app.route('/voters')
-def voters():
-    df = get_data()
-    voters_list = df.to_dict('records')
-    return render_template('voters.html', voters=voters_list)
-
-@app.route('/search', methods=['GET', 'POST'])
-def search():
-    df = get_data()
-    results = []
-    if request.method == 'POST':
-        query = request.form['query']
-        results = df[df['Name'].str.contains(query, na=False, case=False)].to_dict('records')
-    return render_template('search.html', results=results)
+<h2>Search Voter</h2>
+<form method="POST">
+  <input type="text" name="serial" placeholder="Serial No">
+  <input type="text" name="name" placeholder="Name">
+  <input type="text" name="house" placeholder="House Name">
+  <input type="text" name="party" placeholder="Political Party (LDF/UDF/NDA)">
+  <input type="submit" value="Search">
+</form>
+{% if results %}
+  <table border=1>
+    <tr>
+      {% for col in results[0].keys() %}<th>{{ col }}</th>{% endfor %}
+    </tr>
+    {% for v in results %}
+      <tr>
+        {% for c in v.values() %}<td>{{ c }}</td>{% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+{% endif %}
